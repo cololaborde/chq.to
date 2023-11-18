@@ -1,10 +1,12 @@
 class RegularLinksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_regular_link, only: %i[ show edit update destroy ]
+  before_action :check_user_ownership, only: %i[show edit update destroy]
+
 
   # GET /regular_links or /regular_links.json
   def index
-    @regular_links = RegularLink.all
+    @regular_links = RegularLink.all.where(user_id: current_user.id)
   end
 
   # GET /regular_links/1 or /regular_links/1.json
@@ -56,6 +58,13 @@ class RegularLinksController < ApplicationController
   end
 
   private
+
+    def check_user_ownership
+      unless @regular_link.user == current_user
+        redirect_to regular_links_path, alert: 'No tienes permisos para realizar esta acción.'
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_regular_link
       @regular_link = RegularLink.find(params[:id])
