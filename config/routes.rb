@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :ephemeral_links
+  resources :private_links
+  resources :temporal_links
   root 'home#index'
   resources :regular_links
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
