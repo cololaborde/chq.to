@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Ephemeral links</h1>
+
+<div id="ephemeral_links">
+  <% @ephemeral_links.each do |ephemeral_link| %>
+    <%= render ephemeral_link %>
+    <p>
+      <%= link_to "Show this ephemeral link", ephemeral_link %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New ephemeral link", new_ephemeral_link_path %>

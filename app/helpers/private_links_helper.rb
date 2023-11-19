@@ -1,0 +1,2 @@
+module PrivateLinksHelper
+end

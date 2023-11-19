@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Temporal links</h1>
+
+<div id="temporal_links">
+  <% @temporal_links.each do |temporal_link| %>
+    <%= render temporal_link %>
+    <p>
+      <%= link_to "Show this temporal link", temporal_link %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New temporal link", new_temporal_link_path %>
