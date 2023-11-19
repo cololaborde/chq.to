@@ -1,6 +1,5 @@
-class EphemeralLink < RegularLink
+class EphemeralLink < Link
   attribute :used, :boolean
-  validates_presence_of :slug, :destination_url
-  validates_uniqueness_of :slug
+  validates_presence_of :destination_url
   validates :name, presence: false
 end
