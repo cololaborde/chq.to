@@ -1,30 +1,3 @@
 <%= form_with(model: regular_link) do |form| %>
-  <% if regular_link.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(regular_link.errors.count, "error") %> prohibited this regular_link from being saved:</h2>
-
-      <ul>
-        <% regular_link.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :destination_url, style: "display: block" %>
-    <%= form.text_field :destination_url %>
-  </div>
-
-  <!-- Elimina el campo user_id del formulario -->
-  <%= form.hidden_field :user_id, value: current_user.id %>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= render 'links/form', form: form %>
 <% end %>

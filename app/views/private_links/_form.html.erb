@@ -1,42 +1,8 @@
 <%= form_with(model: private_link) do |form| %>
-  <% if private_link.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(private_link.errors.count, "error") %> prohibited this private_link from being saved:</h2>
-
-      <ul>
-        <% private_link.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <%= render 'links/form', form: form do |f| %>
   <% end %>
-
   <div>
-    <%= form.label :slug, style: "display: block" %>
-    <%= form.text_field :slug %>
-  </div>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :destination_url, style: "display: block" %>
-    <%= form.text_field :destination_url %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :password, style: "display: block" %>
-    <%= form.text_field :password %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+      <%= form.label :password, style: "display: block" %>
+      <%= form.password_field :password %>
+    </div>
 <% end %>
