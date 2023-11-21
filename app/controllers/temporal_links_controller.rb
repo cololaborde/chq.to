@@ -1,5 +1,7 @@
 class TemporalLinksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_temporal_link, only: %i[ show edit update destroy ]
+  before_action :check_user_ownership, only: %i[show edit update destroy]
 
   # GET /temporal_links or /temporal_links.json
   def index
@@ -21,15 +23,16 @@ class TemporalLinksController < ApplicationController
 
   # POST /temporal_links or /temporal_links.json
   def create
-    @temporal_link = TemporalLink.new(temporal_link_params)
+    @temporal_link = current_user.temporal_links.build(temporal_link_params)
+    @temporal_link.slug = SlugGenerator.generate
 
-    respond_to do |format|
-      if @temporal_link.save
-        format.html { redirect_to temporal_link_url(@temporal_link), notice: "Temporal link was successfully created." }
-        format.json { render :show, status: :created, location: @temporal_link }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @temporal_link.errors, status: :unprocessable_entity }
+    if @temporal_link.save
+      redirect_to @temporal_link, notice: 'Temporal link was successfully created.'
+    else
+      respond_to do |format|
+      # show errors
+      format.html { render :new, status: :unprocessable_entity }
+      format.json { render json: @temporal_link.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,6 +61,13 @@ class TemporalLinksController < ApplicationController
   end
 
   private
+
+  def check_user_ownership
+    unless @temporal_link.user == current_user
+      redirect_to temporal_links_path, alert: 'No tienes permisos para realizar esta acción.'
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_temporal_link
       @temporal_link = TemporalLink.find(params[:id])

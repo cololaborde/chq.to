@@ -1,5 +1,7 @@
 class PrivateLinksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_private_link, only: %i[ show edit update destroy ]
+  before_action :check_user_ownership, only: %i[show edit update destroy]
 
   # GET /private_links or /private_links.json
   def index
@@ -21,16 +23,17 @@ class PrivateLinksController < ApplicationController
 
   # POST /private_links or /private_links.json
   def create
-    @private_link = PrivateLink.new(private_link_params)
+    @private_link = current_user.private_links.build(private_link_params)
+    @private_link.slug = SlugGenerator.generate
 
-    respond_to do |format|
-      if @private_link.save
-        format.html { redirect_to private_link_url(@private_link), notice: "Private link was successfully created." }
-        format.json { render :show, status: :created, location: @private_link }
-      else
+    if @private_link.save
+      redirect_to @private_link, notice: 'Private link was successfully created.'
+    else
+      respond_to do |format|
+        # show errors
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @private_link.errors, status: :unprocessable_entity }
-      end
+        end
     end
   end
 
@@ -58,6 +61,12 @@ class PrivateLinksController < ApplicationController
   end
 
   private
+
+  def check_user_ownership
+    unless @private_link.user == current_user
+      redirect_to private_links_path, alert: 'No tienes permisos para realizar esta acción.'
+    end
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_private_link
       @private_link = PrivateLink.find(params[:id])

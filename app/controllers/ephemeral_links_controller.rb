@@ -1,5 +1,7 @@
 class EphemeralLinksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_ephemeral_link, only: %i[ show edit update destroy ]
+  before_action :check_user_ownership, only: %i[show edit update destroy]
 
   # GET /ephemeral_links or /ephemeral_links.json
   def index
@@ -21,16 +23,18 @@ class EphemeralLinksController < ApplicationController
 
   # POST /ephemeral_links or /ephemeral_links.json
   def create
-    @ephemeral_link = EphemeralLink.new(ephemeral_link_params)
+    @ephemeral_link = current_user.ephemeral_links.build(ephemeral_link_params)
+    @ephemeral_link.used = false
+    @ephemeral_link.slug = SlugGenerator.generate
 
-    respond_to do |format|
-      if @ephemeral_link.save
-        format.html { redirect_to ephemeral_link_url(@ephemeral_link), notice: "Ephemeral link was successfully created." }
-        format.json { render :show, status: :created, location: @ephemeral_link }
-      else
+    if @ephemeral_link.save
+      redirect_to @ephemeral_link, notice: 'Ephemeral link was successfully created.'
+    else
+      respond_to do |format|
+        # show errors
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @ephemeral_link.errors, status: :unprocessable_entity }
-      end
+        end
     end
   end
 
@@ -58,6 +62,12 @@ class EphemeralLinksController < ApplicationController
   end
 
   private
+
+  def check_user_ownership
+    unless @ephemeral_link.user == current_user
+      redirect_to ephemeral_links_path, alert: 'No tienes permisos para realizar esta acción.'
+    end
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_ephemeral_link
       @ephemeral_link = EphemeralLink.find(params[:id])

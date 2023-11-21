@@ -30,7 +30,11 @@ class RegularLinksController < ApplicationController
     if @regular_link.save
       redirect_to @regular_link, notice: 'Regular link was successfully created.'
     else
-      render :new
+      respond_to do |format|
+        # show errors
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @regular_link.errors, status: :unprocessable_entity }
+        end
     end
   end
 
