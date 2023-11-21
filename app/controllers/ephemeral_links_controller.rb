@@ -3,7 +3,7 @@ class EphemeralLinksController < ApplicationController
 
   # GET /ephemeral_links or /ephemeral_links.json
   def index
-    @ephemeral_links = EphemeralLink.all
+    @ephemeral_links = EphemeralLink.all.where(user_id: current_user.id)
   end
 
   # GET /ephemeral_links/1 or /ephemeral_links/1.json

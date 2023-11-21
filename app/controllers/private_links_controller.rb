@@ -3,7 +3,7 @@ class PrivateLinksController < ApplicationController
 
   # GET /private_links or /private_links.json
   def index
-    @private_links = PrivateLink.all
+    @private_links = PrivateLink.all.where(user_id: current_user.id)
   end
 
   # GET /private_links/1 or /private_links/1.json

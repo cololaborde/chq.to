@@ -3,7 +3,7 @@ class TemporalLinksController < ApplicationController
 
   # GET /temporal_links or /temporal_links.json
   def index
-    @temporal_links = TemporalLink.all
+    @temporal_links = TemporalLink.all.where(user_id: current_user.id)
   end
 
   # GET /temporal_links/1 or /temporal_links/1.json
