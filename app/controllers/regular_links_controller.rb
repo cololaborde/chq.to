@@ -75,12 +75,4 @@ class RegularLinksController < ApplicationController
     def regular_link_params
       params.require(:regular_link).permit(:name, :destination_url)
     end
-
-   # def generate_slug_from_url(url)
-   #   loop do
-   #     characters = [('a'..'z'), ('A'..'Z'), (0..9)].map(&:to_a).flatten
-   #     slug = (0...6).map { characters[rand(characters.length)] }.join
-   #     break generated_slug unless RegularLink.exists?(slug: slug)
-   #   end
-   # end
 end
