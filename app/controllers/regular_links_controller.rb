@@ -25,7 +25,7 @@ class RegularLinksController < ApplicationController
   # POST /regular_links or /regular_links.json
   def create
     @regular_link = current_user.regular_links.build(regular_link_params)
-    @regular_link.slug = generate_slug_from_url(@regular_link.destination_url)
+    @regular_link.slug = SlugGenerator.generate
 
     if @regular_link.save
       redirect_to @regular_link, notice: 'Regular link was successfully created.'
@@ -76,12 +76,11 @@ class RegularLinksController < ApplicationController
       params.require(:regular_link).permit(:name, :destination_url)
     end
 
-    def generate_slug_from_url(url)
-      loop do
-        characters = [('a'..'z'), ('A'..'Z'), (0..9)].map(&:to_a).flatten
-        slug = (0...6).map { characters[rand(characters.length)] }.join
-
-        break generated_slug unless RegularLink.exists?(slug: slug)
-      end
-    end
+   # def generate_slug_from_url(url)
+   #   loop do
+   #     characters = [('a'..'z'), ('A'..'Z'), (0..9)].map(&:to_a).flatten
+   #     slug = (0...6).map { characters[rand(characters.length)] }.join
+   #     break generated_slug unless RegularLink.exists?(slug: slug)
+   #   end
+   # end
 end
