@@ -79,11 +79,9 @@ class RegularLinksController < ApplicationController
     def generate_slug_from_url(url)
       loop do
         characters = [('a'..'z'), ('A'..'Z'), (0..9)].map(&:to_a).flatten
-        short_url = (0...6).map { characters[rand(characters.length)] }.join
-        generated_slug = "http://localhost:3000/l/#{short_url}"
-    
-        # Verificar si el slug generado ya existe en la base de datos
-        break generated_slug unless RegularLink.exists?(slug: generated_slug)
+        slug = (0...6).map { characters[rand(characters.length)] }.join
+
+        break generated_slug unless RegularLink.exists?(slug: slug)
       end
     end
 end
