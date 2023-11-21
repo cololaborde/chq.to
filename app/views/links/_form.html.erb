@@ -13,6 +13,18 @@
 
   <%= render 'links/form_fields', form: f %>
 
+  <% if form.object.class == TemporalLink %>
+    <div>
+      <%= f.label :expiration_date, style: "display: block" %>
+      <%= f.datetime_field :expiration_date %>
+    </div>
+  <% elsif form.object.class == PrivateLink %>
+    <div>
+      <%= f.label :password, style: "display: block" %>
+      <%= f.password_field :password %>
+    </div>
+  <% end %>
+
   <div>
     <%= f.submit %>
   </div>
