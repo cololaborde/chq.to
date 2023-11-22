@@ -12,7 +12,9 @@
   <% end %>
 
   <%= render 'links/form_fields', form: f %>
+  
 
+  # consultar como hacer para insertar campos desde el formulario
   <% if form.object.class == TemporalLink %>
     <div>
       <%= f.label :expiration_date, style: "display: block" %>
