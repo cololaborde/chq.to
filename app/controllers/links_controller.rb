@@ -49,7 +49,7 @@ class LinksController < ApplicationController
 
   def access_ephemeral(link)
     if link.used
-      redirect_to root_path, alert: "El enlace ya ha sido utilizado"
+      render file: "#{Rails.root}/public/403.html", status: :not_found, layout: false
     else
       link.update(used: true)
       redirect_to link.destination_url, allow_other_host: true
