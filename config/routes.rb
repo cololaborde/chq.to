@@ -2,8 +2,12 @@ Rails.application.routes.draw do
   resources :ephemeral_links
   resources :private_links
   resources :temporal_links
-  root 'home#index'
   resources :regular_links
+  root 'home#index'
+
+  # resources :regular_links, controller: 'links', type: 'RegularLink'
+  # resources :links, param: :type, except: [:show]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -18,10 +22,8 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     sessions: 'users/sessions'
   }
-
-  #get '/l/:slug', to: 'links#show', as: :regular_link
-  #get '/t/:slug', to: 'links#show_temporal', as: :temporal_link
-  #get '/p/:slug', to: 'links#show_private', as: :private_link
-  #get '/e/:slug', to: 'links#show_ephemeral', as: :ephemeral_link
+  
+  post '/l/:id/access_private', to: 'links#access_private', as: :access_private
+  get '/l/:slug', to: 'links#access'
 
 end
