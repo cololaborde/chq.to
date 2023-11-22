@@ -37,7 +37,7 @@ class LinksController < ApplicationController
 
   def access_temporal(link)
     if link.expiration_date < Time.now
-      redirect_to root_path, alert: "El enlace ha expirado"
+      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
     else
       redirect_to link.destination_url, allow_other_host: true
     end
