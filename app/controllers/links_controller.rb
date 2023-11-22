@@ -24,7 +24,7 @@ class LinksController < ApplicationController
     elsif params[:password].present? && link.password == params[:password]
       redirect_to link.destination_url, allow_other_host: true
     else
-      redirect_to root_path, alert: "Contraseña incorrecta"
+      render '_access_private_form', locals: { link: link }
     end
   end
   
