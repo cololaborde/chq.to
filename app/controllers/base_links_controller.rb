@@ -9,7 +9,6 @@ class BaseLinksController < ApplicationController
   
     def show
       def show
-        @final_url = combine_attributes(instance_variable_get("@#{controller_name.singularize}"))
       end
     end
   
@@ -70,6 +69,7 @@ class BaseLinksController < ApplicationController
             render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
         else
             instance_variable_set("@#{controller_name.singularize}", link)
+            @final_url = combine_attributes(instance_variable_get("@#{controller_name.singularize}"))
         end
     end
   
