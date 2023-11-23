@@ -2,6 +2,10 @@
 class LinksController < ApplicationController
   def access
     @link = Link.find_by(slug: params[:slug])
+    if @link.nil? == false
+      create_link_access(@link)
+    end
+      
     case @link
     when RegularLink
       access_regular(@link)
@@ -55,4 +59,12 @@ class LinksController < ApplicationController
       redirect_to link.destination_url, allow_other_host: true
     end
   end
+
+  def create_link_access(link)
+    link.link_accesses.create!(
+      accessed_at: Time.now,
+      ip_address: request.remote_ip
+    )
+  end
+
 end
