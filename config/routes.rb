@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :link_accesses
   resources :ephemeral_links
   resources :private_links
   resources :temporal_links
