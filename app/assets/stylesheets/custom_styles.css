@@ -57,3 +57,24 @@ body {
     margin-bottom: 20px;
   }
   
+
+  .logout-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .logout-button a {
+    text-decoration: none;
+    padding: 8px 12px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px solid #2980b9;
+    transition: background-color 0.3s;
+  }
+  
+  .logout-button a:hover {
+    background-color: #2980b9;
+  }
+  
