@@ -8,6 +8,9 @@ class BaseLinksController < ApplicationController
     end
   
     def show
+      def show
+        @final_url = combine_attributes(instance_variable_get("@#{controller_name.singularize}"))
+      end
     end
   
     def new
@@ -73,5 +76,10 @@ class BaseLinksController < ApplicationController
     def link_params
       params.require(controller_name.singularize.to_sym).permit(:slug, :name, :destination_url, :user_id, :password, :expiration_date)
     end
+
+    def combine_attributes(link)
+      "http://#{request.host_with_port}/l/#{link.slug}"
+    end
+
   end
   
