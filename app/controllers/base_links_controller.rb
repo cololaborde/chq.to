@@ -56,7 +56,7 @@ class BaseLinksController < ApplicationController
   
     def check_user_ownership
       unless instance_variable_get("@#{controller_name.singularize}").user == current_user
-        redirect_to send("#{controller_name}_path"), alert: "No tienes permisos para realizar esta acción."
+        render file: "#{Rails.root}/public/403.html", status: :not_found, layout: false
       end
     end
   
