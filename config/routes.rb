@@ -25,5 +25,6 @@ Rails.application.routes.draw do
   
   post '/l/:id/access_private', to: 'links#access_private', as: :access_private
   get '/l/:slug', to: 'links#access'
+  match '*path', to: 'errors#not_found', via: :all
 
 end
