@@ -2,10 +2,10 @@ class SlugGenerator
 
   attr_accessor :slug_size, :range_0, :range_1, :range_2
 
-    @slug_size = 5
-    @range_0 = ('a'..'z')
-    @range_1 = ('A'..'Z')
-    @range_2 = ('0'..'9')
+  @slug_size = 5
+  @range_0 = ('a'..'z')
+  @range_1 = ('A'..'Z')
+  @range_2 = ('0'..'9')
   
   def self.possible_combinations
     combinations = (@range_0.count + @range_1.count + @range_2.count) ** @slug_size
