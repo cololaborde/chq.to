@@ -1,0 +1,18 @@
+<h1>Detalle de Accesos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha y Hora</th>
+      <th>Dirección IP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @link_accesses.each do |link_access| %>
+      <tr>
+        <td><%= link_access.accessed_at %></td>
+        <td><%= link_access.ip_address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
