@@ -1,4 +1,13 @@
 class LinkAccessesController < ApplicationController
+
+    def index
+        @link_accesses = LinkAccess.all
+    end
+    
+    def show
+        @link_access = LinkAccess.find(params[:id])
+    end
+
     def create
         @link_access = LinkAccess.new(link_access_params)
     
@@ -7,12 +16,11 @@ class LinkAccessesController < ApplicationController
         else
           render json: { status: 'error', message: 'Failed to create link access', errors: @link_access.errors.full_messages }
         end
-      end
+    end
     
-      private
+    private
     
-      def link_access_params
-        params.require(:link_access).permit(:link_id, :accessed_at, :user_ip)
-      end
+    def link_access_params
+        params.require(:link_access).permit(:link_id, :accessed_at, :ip_address)
     end
 end
