@@ -61,7 +61,13 @@ class BaseLinksController < ApplicationController
     end
   
     def set_link
-      instance_variable_set("@#{controller_name.singularize}", controller_name.classify.constantize.find(params[:id]))
+        link = current_user.send(controller_name).find_by(id: params[:id])
+        
+        if link.nil?
+            render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+        else
+            instance_variable_set("@#{controller_name.singularize}", link)
+        end
     end
   
     def link_params
