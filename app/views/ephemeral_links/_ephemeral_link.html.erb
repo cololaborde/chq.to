@@ -1,7 +1,8 @@
 <div id="<%= dom_id ephemeral_link %>">
+
   <p>
-    <strong>Slug:</strong>
-    <%= ephemeral_link.slug %>
+    <strong>Link:</strong> 
+    <a href = "<%= @final_url %>"><%= @final_url %></a>
   </p>
 
   <p>
@@ -12,11 +13,6 @@
   <p>
     <strong>Destination url:</strong>
     <%= ephemeral_link.destination_url %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= ephemeral_link.user_id %>
   </p>
 
   <p>
