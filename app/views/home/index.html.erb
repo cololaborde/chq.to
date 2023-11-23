@@ -1,7 +1,9 @@
 <div>
   <!-- Agrega el botón de cerrar sesión -->
   <div class="logout-button">
-  <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+  <%= form_tag(destroy_user_session_path, method: :delete) do %>
+    <%= submit_tag 'Cerrar Sesión' %>
+  <% end %>
   </div>
 </div>
 <div class="page-title">Enlaces</div>
