@@ -15,4 +15,9 @@ class EphemeralLinksController < BaseLinksController
         end
     end
   end
+
+  private
+  def ephemeral_link_params
+    params.require(:ephemeral_link).permit(:slug, :name, :destination_url, :user_id, :used)
+  end
 end
