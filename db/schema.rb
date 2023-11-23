@@ -10,40 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_18_170714) do
-  create_table "ephemeral_links", force: :cascade do |t|
-    t.boolean "used", null: false
-    t.integer "regular_link_id", null: false
+ActiveRecord::Schema[7.1].define(version: 2023_11_23_224744) do
+  create_table "link_accesses", force: :cascade do |t|
+    t.integer "link_id", null: false
+    t.datetime "accessed_at"
+    t.string "ip_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["regular_link_id"], name: "index_ephemeral_links_on_regular_link_id"
+    t.index ["link_id"], name: "index_link_accesses_on_link_id"
   end
 
-  create_table "private_links", force: :cascade do |t|
-    t.string "password", null: false
-    t.integer "regular_link_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["regular_link_id"], name: "index_private_links_on_regular_link_id"
-  end
-
-  create_table "regular_links", force: :cascade do |t|
-    t.integer "user_id", null: false
+  create_table "links", force: :cascade do |t|
     t.string "slug", null: false
-    t.string "name"
     t.string "destination_url", null: false
+    t.string "name"
+    t.integer "user_id", null: false
+    t.string "type", null: false
+    t.datetime "expiration_date"
+    t.string "password"
+    t.boolean "used"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["slug"], name: "index_regular_links_on_slug"
-    t.index ["user_id"], name: "index_regular_links_on_user_id"
-  end
-
-  create_table "temporal_links", force: :cascade do |t|
-    t.datetime "expiration_date", null: false
-    t.integer "regular_link_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["regular_link_id"], name: "index_temporal_links_on_regular_link_id"
+    t.index ["slug"], name: "index_links_on_slug", unique: true
+    t.index ["user_id"], name: "index_links_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,8 +50,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_18_170714) do
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
-  add_foreign_key "ephemeral_links", "regular_links"
-  add_foreign_key "private_links", "regular_links"
-  add_foreign_key "regular_links", "users"
-  add_foreign_key "temporal_links", "regular_links"
+  add_foreign_key "link_accesses", "links"
+  add_foreign_key "links", "users"
 end
