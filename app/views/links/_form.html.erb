@@ -1,10 +1,10 @@
-<%= form_with(model: link, local: true) do |f| %>
-  <% if link.errors.any? %>
+<%= form_with(model: form.object, local: true) do |f| %>
+  <% if form.object.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h2>
+      <h2><%= pluralize(form.object.errors.count, "error") %> prohibited this link from being saved:</h2>
 
       <ul>
-        <% link.errors.each do |error| %>
+        <% form.object.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -13,7 +13,12 @@
 
   <%= render 'links/form_fields', form: f %>
 
-  <%= yield :additional_fields %>
+  <% case form.object.class.to_s %>
+  <% when 'TemporalLink' %>
+    <%= render 'links/temporal_fields', form: f %>
+  <% when 'PrivateLink' %>
+    <%= render 'links/private_fields', form: f %>
+  <% end %>
 
   <div>
     <%= f.submit %>

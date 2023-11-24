@@ -1,18 +1,1 @@
-<div id="<%= dom_id private_link %>">
-
-  <p>
-    <strong>Link:</strong> 
-    <a href = "<%= @final_url %>"> <%= @final_url %> </a>
-  </p>
-
-  <p>
-    <strong>Name:</strong>
-    <%= private_link.name %>
-  </p>
-
-  <p>
-    <strong>Destination url:</strong>
-    <%= private_link.destination_url %>
-  </p>
-
-</div>
+<%= render 'links/link', link: @private_link %>
