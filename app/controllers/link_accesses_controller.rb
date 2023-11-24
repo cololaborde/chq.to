@@ -1,8 +1,9 @@
 class LinkAccessesController < ApplicationController
+    before_action :authenticate_user!
 
     def index
-        @link_accesses = LinkAccess.all
-    end
+        @link_accesses = current_user.links.where(id: params[:link_id]).includes(:link_accesses).flat_map(&:link_accesses)
+    end      
     
     def show
         @link_access = LinkAccess.find(params[:id])

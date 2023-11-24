@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
 
+  has_many :links, dependent: :destroy
   has_many :regular_links, dependent: :destroy
   has_many :temporal_links, dependent: :destroy
   has_many :private_links, dependent: :destroy
