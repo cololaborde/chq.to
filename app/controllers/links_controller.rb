@@ -2,9 +2,6 @@
 class LinksController < ApplicationController
   def access
     @link = Link.find_by(slug: params[:slug])
-    if @link.nil? == false
-      create_link_access(@link)
-    end
       
     case @link
     when RegularLink
@@ -26,6 +23,7 @@ class LinksController < ApplicationController
     if link.nil?
       redirect_to root_path, alert: "Enlace no válido"
     elsif params[:password].present? && link.password == params[:password]
+      create_link_access(@link)
       redirect_to link.destination_url, allow_other_host: true
     else
       render '_access_private_form', locals: { link: link }
@@ -36,6 +34,7 @@ class LinksController < ApplicationController
   private
 
   def access_regular(link)
+    create_link_access(@link)
     redirect_to link.destination_url, allow_other_host: true
   end
 
@@ -43,6 +42,7 @@ class LinksController < ApplicationController
     if link.expiration_date < Time.now
       render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
     else
+      create_link_access(@link)
       redirect_to link.destination_url, allow_other_host: true
     end
   end
@@ -56,6 +56,7 @@ class LinksController < ApplicationController
       render file: "#{Rails.root}/public/403.html", status: :not_found, layout: false
     else
       link.update(used: true)
+      create_link_access(@link)
       redirect_to link.destination_url, allow_other_host: true
     end
   end
