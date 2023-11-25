@@ -4,7 +4,7 @@
 
 <div id="ephemeral_links">
   <% @ephemeral_links.each do |ephemeral_link| %>
-    <%= render ephemeral_link %>
+    <%= render partial: 'links/link', locals: { link: ephemeral_link } %>
     <p>
       <%= link_to "Show this ephemeral link", ephemeral_link %>
     </p>

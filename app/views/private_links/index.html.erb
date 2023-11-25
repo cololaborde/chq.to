@@ -4,7 +4,7 @@
 
 <div id="private_links">
   <% @private_links.each do |private_link| %>
-    <%= render private_link %>
+    <%= render partial: 'links/link', locals: { link: private_link } %>
     <p>
       <%= link_to "Show this private link", private_link %>
     </p>

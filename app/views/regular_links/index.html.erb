@@ -4,7 +4,7 @@
 
 <div id="regular_links">
   <% @regular_links.each do |regular_link| %>
-    <%= render regular_link %>
+    <%= render partial: 'links/link', locals: { link: regular_link } %>
     <p>
       <%= link_to "Show this regular link", regular_link %>
     </p>
