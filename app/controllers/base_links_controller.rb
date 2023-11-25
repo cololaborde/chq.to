@@ -8,8 +8,6 @@ class BaseLinksController < ApplicationController
     end
   
     def show
-      def show
-      end
     end
   
     def new
