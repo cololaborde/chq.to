@@ -63,3 +63,4 @@ group :development do
 end
 
 gem 'devise', '~> 4.9.0' # para autenticacion
+gem 'ransack', '~> 4.1' # para busqueda
