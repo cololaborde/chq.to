@@ -1,6 +1,8 @@
 <h1>Editing private link</h1>
 
-<%= render "form", private_link: @private_link %>
+<%= form_with(model: @private_link) do |form| %>
+  <%= render 'links/form', form: form %>
+<% end %>
 
 <br>
 

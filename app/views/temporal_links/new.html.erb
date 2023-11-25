@@ -1,6 +1,8 @@
 <h1>New temporal link</h1>
 
-<%= render "form", temporal_link: @temporal_link %>
+<%= form_with(model: @temporal_link) do |form| %>
+  <%= render 'links/form', form: form %>
+<% end %>
 
 <br>
 
