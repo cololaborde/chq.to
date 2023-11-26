@@ -62,4 +62,6 @@ group :development do
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
 end
 
-gem 'devise', '~> 4.9.0'
+gem 'devise', '~> 4.9.0' # para autenticacion
+gem 'ransack', '~> 4.1' # para busqueda
+gem 'rack-cors' # para problema con CORS

@@ -1,0 +1,10 @@
+<h1>New private link</h1>
+
+<%= form_with(model: @private_link) do |form| %>
+  <%= render 'links/form', form: form %>
+<% end %>
+<br>
+
+<div>
+  <%= link_to "Back to private links", private_links_path %>
+</div>

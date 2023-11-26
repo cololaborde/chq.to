@@ -146,6 +146,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (3.0.8)
+    rack-cors (2.0.1)
+      rack (>= 2.0.0)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -183,6 +185,10 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rake (13.1.0)
+    ransack (4.1.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     rdoc (6.6.0)
       psych (>= 4.0.0)
     reline (0.4.0)
@@ -234,7 +240,9 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   puma (>= 5.0)
+  rack-cors
   rails (~> 7.1.2)
+  ransack (~> 4.1)
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails

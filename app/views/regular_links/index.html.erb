@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Regular links</h1>
+
+<div id="regular_links">
+  <% @regular_links.each do |regular_link| %>
+    <%= render partial: 'links/link', locals: { link: regular_link } %>
+    <p>
+      <%= link_to "Show this regular link", regular_link %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New regular link", new_regular_link_path %>

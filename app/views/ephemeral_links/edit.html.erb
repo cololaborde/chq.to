@@ -1,0 +1,12 @@
+<h1>Editing ephemeral link</h1>
+
+<%= form_with(model: @ephemeral_link) do |form| %>
+  <%= render 'links/form', form: form %>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Show this ephemeral link", @ephemeral_link %> |
+  <%= link_to "Back to ephemeral links", ephemeral_links_path %>
+</div>

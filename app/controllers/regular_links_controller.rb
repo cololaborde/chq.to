@@ -1,0 +1,2 @@
+class RegularLinksController < BaseLinksController
+end

@@ -1,0 +1,2 @@
+class TemporalLinksController < BaseLinksController
+end

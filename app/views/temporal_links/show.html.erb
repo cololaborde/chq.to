@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @temporal_link %>
+
+<div>
+  <%= link_to "Edit this temporal link", edit_temporal_link_path(@temporal_link) %> |
+  <%= link_to "Back to temporal links", temporal_links_path %>
+
+  <%= button_to "Destroy this temporal link", @temporal_link, method: :delete %>
+</div>

@@ -1,0 +1,41 @@
+<div id="<%= dom_id link %>">
+
+  <% if @final_url %>
+    <p>
+      <strong>Link:</strong> 
+      <a href="<%= @final_url %>"><%= @final_url %></a>
+    </p>
+  <% end %>
+
+  <p>
+    <strong>Name:</strong>
+    <%= link.name %>
+  </p>
+
+  <p>
+    <strong>Destination URL:</strong>
+    <%= link.destination_url %>
+  </p>
+
+  <% if link.is_a?(TemporalLink) %>
+    <p>
+      <strong>Vencimiento:</strong> <%= link.expiration_date %>
+    </p>
+  <% end %>
+
+  <% if link.is_a?(EphemeralLink) %>
+    <p>
+      <strong>Usado:</strong> <%= link.used %>
+    </p>
+  <% end %>
+
+  <% if link.is_a?(PrivateLink) %>
+    <p>
+      <strong>Contraseña:</strong> <%= link.password %>
+    </p>
+  <% end %>
+
+  <p>
+    <%= link_to 'Detalle de Accesos', link_accesses_path(link_id: link.id) %>
+  </p>
+</div>
