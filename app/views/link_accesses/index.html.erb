@@ -32,3 +32,8 @@
     <% end %>
   </tbody>
 </table>
+
+
+<% @access_per_day.each do |fecha, cantidad| %>
+  <p><%= "Fecha: #{fecha}, Cantidad: #{cantidad}" %></p>
+<% end %>
