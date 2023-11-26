@@ -13,7 +13,7 @@ class LinksController < ApplicationController
     when EphemeralLink
       access_ephemeral(@link)
     else
-      redirect_to root_path, alert: "Enlace no válido"
+      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
     end
   end
 
@@ -21,10 +21,9 @@ class LinksController < ApplicationController
     link = Link.find_by(id: params[:id])
     
     if link.nil?
-      redirect_to root_path, alert: "Enlace no válido"
+      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
     elsif params[:password].present? && link.password == params[:password]
-      create_link_access(link)
-      redirect_to link.destination_url, allow_other_host: true
+      create_access_and_redirect(link)
     else
       render '_access_private_form', locals: { link: link }
     end
@@ -63,7 +62,10 @@ class LinksController < ApplicationController
       accessed_at: Time.now,
       ip_address: request.remote_ip
     )
-
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    response.headers['Access-Control-Request-Method'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     redirect_to link.destination_url, allow_other_host: true
   end
 
