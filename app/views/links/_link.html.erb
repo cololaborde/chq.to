@@ -1,8 +1,11 @@
 <div id="<%= dom_id link %>">
-  <p>
-    <strong>Link:</strong> 
-    <a href="<%= @final_url %>"><%= @final_url %></a>
-  </p>
+
+  <% if @final_url %>
+    <p>
+      <strong>Link:</strong> 
+      <a href="<%= @final_url %>"><%= @final_url %></a>
+    </p>
+  <% end %>
 
   <p>
     <strong>Name:</strong>

@@ -15,9 +15,9 @@
 
   <% case form.object.class.to_s %>
   <% when 'TemporalLink' %>
-    <%= render 'links/temporal_fields', form: f %>
+    <%= render 'temporal_links/temporal_fields', form: f %>
   <% when 'PrivateLink' %>
-    <%= render 'links/private_fields', form: f %>
+    <%= render 'private_links/private_fields', form: f %>
   <% end %>
 
   <div>
