@@ -1,4 +1,3 @@
-# app/controllers/links_controller.rb
 class LinksController < ApplicationController
   def access
     @link = Link.find_by(slug: params[:slug])

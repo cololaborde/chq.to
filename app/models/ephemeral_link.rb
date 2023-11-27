@@ -1,5 +1,4 @@
 class EphemeralLink < Link
-  attribute :used, :boolean
-  validates_presence_of :destination_url
-  validates :name, presence: false
+  attribute :used, :boolean, default: false
+  validates :used, inclusion: { in: [true, false] }
 end
