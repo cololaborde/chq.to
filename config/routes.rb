@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   }
   
   # ruta de acceso a los links
-  get '/l/:slug', to: 'links#access'
+  get '/l/:slug', to: 'link_redirection#access'
 
   # ruta para el formulario de pw de un link privado
   post '/l/:id/access_private', to: 'links#access_private', as: :access_private
