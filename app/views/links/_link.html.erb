@@ -3,7 +3,7 @@
   <% if @final_url %>
     <p>
       <strong>Link:</strong> 
-      <a href="<%= @final_url %>"><%= @final_url %></a>
+      <a href="#" onclick="openLink('<%= @final_url %>'); return false;"><%= @final_url %></a>
     </p>
   <% end %>
 
@@ -39,3 +39,5 @@
     <%= link_to 'Detalle de Accesos', link_accesses_path(link_id: link.id) %>
   </p>
 </div>
+
+<%= javascript_include_tag 'openLink' %>
