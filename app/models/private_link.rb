@@ -1,4 +1,4 @@
 class PrivateLink < Link
   attribute :password, :string
-  validates_presence_of :password
+  validates :password, presence: true
 end
