@@ -8,7 +8,7 @@ class LinksController < ApplicationController
     # instance_variable_set("@#{controller_name}" equivale a que se setee la variable @tipo_links
   
     def index
-      instance_variable_set("@#{controller_name}", current_user.send(controller_name).all.where(user_id: current_user.id))
+      instance_variable_set("@#{controller_name}", (current_user.send(controller_name).all.where(user_id: current_user.id)).page(params[:page]).per(5))
     end
   
     def show
