@@ -1,2 +1,2 @@
-class PrivateLinksController < BaseLinksController
+class PrivateLinksController < LinksController
 end
