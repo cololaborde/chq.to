@@ -1,2 +1,2 @@
-class EphemeralLinksController < BaseLinksController
+class EphemeralLinksController < LinksController
 end

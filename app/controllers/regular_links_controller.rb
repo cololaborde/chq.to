@@ -1,2 +1,2 @@
-class RegularLinksController < BaseLinksController
+class RegularLinksController < LinksController
 end

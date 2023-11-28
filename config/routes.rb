@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get '/l/:slug', to: 'link_redirection#access'
 
   # ruta para el formulario de pw de un link privado
-  post '/l/:id/access_private', to: 'links#access_private', as: :access_private
+  post '/l/:id/access_private', to: 'link_redirection#access_private', as: :access_private
   
   # para que cualquier subdominio no definido devuelva 404 y no un error
   match '*path', to: 'errors#not_found', via: :all

@@ -1,7 +1,11 @@
-class BaseLinksController < ApplicationController
+class LinksController < ApplicationController
     before_action :authenticate_user!
     before_action :set_link, only: %i[show edit update destroy]
     before_action :check_user_ownership, only: %i[show edit update destroy]
+
+    # @#{controller_name} retorna el nombre del controlador
+    # current_user.send(controller_name) equivale a current_user.tipo_links
+    # instance_variable_set("@#{controller_name}" equivale a que se setee la variable @tipo_links
   
     def index
       instance_variable_set("@#{controller_name}", current_user.send(controller_name).all.where(user_id: current_user.id))
@@ -9,6 +13,8 @@ class BaseLinksController < ApplicationController
   
     def show
     end
+
+    # controller_name.classify.constantize equivale a TipoLink, es decir a la creación de una nueva instancia de un tipo de link
   
     def new
       instance_variable_set("@#{controller_name.singularize}", controller_name.classify.constantize.new)
@@ -72,7 +78,7 @@ class BaseLinksController < ApplicationController
     end
   
     def link_params
-      params.require(controller_name.singularize.to_sym).permit(:slug, :name, :destination_url, :user_id, :password, :expiration_date)
+      params.require(controller_name.singularize.to_sym).permit(:slug, :name, :destination_url)
     end
 
     def combine_attributes(link)
