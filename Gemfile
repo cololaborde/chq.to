@@ -65,3 +65,4 @@ end
 gem 'devise', '~> 4.9.0' # para autenticacion
 gem 'ransack', '~> 4.1' # para busqueda
 gem 'rack-cors' # para problema con CORS
+gem 'kaminari', '~> 1.2.1' # para paginacion
