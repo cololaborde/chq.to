@@ -78,7 +78,7 @@ class LinksController < ApplicationController
     end
   
     def link_params
-      params.require(controller_name.singularize.to_sym).permit(:slug, :name, :destination_url, :user_id, :password, :expiration_date)
+      params.require(controller_name.singularize.to_sym).permit(:slug, :name, :destination_url)
     end
 
     def combine_attributes(link)
