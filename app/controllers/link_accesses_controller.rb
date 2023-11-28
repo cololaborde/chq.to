@@ -4,7 +4,7 @@ class LinkAccessesController < ApplicationController
 
     def index
       @q = @accesses.ransack(params[:q])
-      @link_accesses = @q.result()
+      @link_accesses = @q.result().page(params[:page]).per(10)
       set_link_access_per_day
     end     
     
