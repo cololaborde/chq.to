@@ -17,7 +17,7 @@ class LinkRedirectionController < ApplicationController
   end
 
   def access_private
-    link = Link.find_by(id: params[:id])
+    link = Link.find_by(slug: params[:slug])
     
     if link.nil?
       render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
