@@ -12,10 +12,12 @@ class HomeController < ApplicationController
 
   def get_top_links(link_type)
     link_type
+      .select('links.*, COUNT(link_accesses.id) AS access_count')
       .left_outer_joins(:link_accesses)
       .where(user_id: current_user.id)
       .group('links.id')
-      .order('COUNT(link_accesses.id) DESC')
+      .order('access_count DESC')
       .limit(5)
   end
+  
 end

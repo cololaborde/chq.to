@@ -12,7 +12,8 @@ module HomeHelper
   def render_link(link)
     content_tag(:div, class: 'link') do
       content_tag(:p) do
-        link_to link.name, polymorphic_path(link)
+        link_to(link.name, polymorphic_path(link)) +
+        content_tag(:span, " (#{link.access_count})", class: 'access-count')
       end
     end
   end
