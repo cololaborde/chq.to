@@ -1,0 +1,16 @@
+es:
+  activerecord:
+    attributes:
+      user:
+        email: "Correo electrónico"
+        password: "Contraseña"
+        password_confirmation: "Confirmación de contraseña"
+        current_password: "Contraseña actual"
+  errors:
+    messages:
+      not_found: "no encontrado"
+      already_confirmed: "ya ha sido confirmado"
+      not_locked: "no está bloqueado"
+  Name: "Nombre"
+  Destination URL: "URL de destino"
+  
