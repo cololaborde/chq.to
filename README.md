@@ -27,6 +27,17 @@ rails db:migrate
    
 ```bash
 #bash
+
+#Usuarios:
+#email: user1@example.com
+#password: password1
+
+#email: user2@example.com
+#password: password2
+
+#email: user3@example.com (sin enlaces)
+#password: password3
+
 rake db:seed
 ```
 
@@ -53,6 +64,7 @@ rails s
 - `link_accesses` (id, link_id, accessed_at, ip_address, created_at, updated_at)
   <br/>
   En ella se registran los accesos a los diferentes tipos de links en caso de que corresponda.
+
 
 ## Aplicación
 
@@ -92,7 +104,17 @@ Existe una clase `Link` que aglutina todos los atributos en común de los enlace
 
 - Controladores definidos por `devise` para el manejo de usuarios, sesiones y autenticación.
 
+
 ### Vistas
 
-### Rutas
+Se realizaron ciertos partials para algunos elementos compartidos, pero manteniendo también vistas y componentes específicos a fin de facilitar el desarrollo:
 
+- `links`: Formularios y elementos compartidos entre todos los links
+- `users`: Vistas creadas por devise para el manejo de usuarios
+- `home`: Templates para los listados de links, agrupados por tipo, los cuales son renderizados haciendo uso de un helper (HomeHelper), evitando así la sobre carga de la vista.
+- Vistas específicas de cada tipo de link
+
+
+### Generación del slug
+
+Se definió una clase sencilla "SlugGenerator" (lib/slug_generator.rb) diseñada para generar slugs únicos de un tamaño específico a partir de un conjunto de caracteres (letras mayúsculas, minúsculas y números), evitando colisiones con los slugs existentes en la base de datos. A medida que se generan más slugs y se acerca a un umbral predefinido (75% de las combinaciones posibles), la longitud del slug se incrementa para mantener una baja probabilidad de repeticiones. 
