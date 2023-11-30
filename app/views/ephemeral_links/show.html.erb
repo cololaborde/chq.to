@@ -3,8 +3,8 @@
 <%= render @ephemeral_link %>
 
 <div>
-  <%= link_to "Edit this ephemeral link", edit_ephemeral_link_path(@ephemeral_link) %> |
-  <%= link_to "Back to ephemeral links", ephemeral_links_path %>
+  <%= link_to "Editar", edit_ephemeral_link_path(@ephemeral_link) %> |
+  <%= link_to "Links efímeros", ephemeral_links_path %>
 
-  <%= button_to "Destroy this ephemeral link", @ephemeral_link, method: :delete %>
+  <%= button_to "Borrar", @ephemeral_link, method: :delete %>
 </div>
