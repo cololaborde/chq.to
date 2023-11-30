@@ -135,3 +135,34 @@ h2 {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.link-details-container {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+}
+
+.link-details-container p {
+  margin: 8px 0;
+}
+
+.link-details-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.link-details-container a:hover {
+  text-decoration: underline;
+}
+
+.access-details-link {
+  color: #28a745;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.access-details-link:hover {
+  text-decoration: underline;
+}
