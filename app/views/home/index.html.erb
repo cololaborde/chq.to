@@ -12,37 +12,33 @@
 </div>
 <div class="page-title">Enlaces mas visitados</div>
   <div class="link-group">
-    <h2 class="title">Regulares</h2>
+    <h2 class="title"><%= link_to 'Regulares', regular_links_path %></h2>
     <div class="link-buttons">
       <button><%= link_to 'Nuevo', new_regular_link_path %></button>
-      <button><%= link_to 'Todos', regular_links_path %></button>
     </div>
     <%= render_links(@regular_links) %>
   </div>
 
   <div class="link-group">
-    <h2 class="title">Temporales</h2>
+    <h2 class="title"><%= link_to 'Temporales', temporal_links_path %></h2>
     <div class="link-buttons">
       <button><%= link_to 'Nuevo', new_temporal_link_path %></button>
-      <button><%= link_to 'Todos', temporal_links_path %></button>
     </div>
     <%= render_links(@temporal_links) %>
   </div>
 
   <div class="link-group">
-    <h2 class="title">Privados</h2>
+    <h2 class="title"><%= link_to 'Privados', private_links_path %></h2>
     <div class="link-buttons">
       <button><%= link_to 'Nuevo', new_private_link_path %></button>
-      <button><%= link_to 'Todos', private_links_path %></button>
     </div>
     <%= render_links(@private_links) %>
   </div>
 
   <div class="link-group">
-    <h2 class="title">Efímeros</h2>
+    <h2 class="title"><%= link_to 'Efímeros', ephemeral_links_path %></h2>
     <div class="link-buttons">
       <button><%= link_to 'Nuevo', new_ephemeral_link_path %></button>
-      <button><%= link_to 'Todos', ephemeral_links_path %></button>
     </div>
     <%= render_links(@ephemeral_links) %>
   </div>
