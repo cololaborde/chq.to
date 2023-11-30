@@ -1,16 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Temporal links</h1>
+<%= link_to "New temporal link", new_temporal_link_path %>
 
 <div id="temporal_links">
   <% @temporal_links.each do |temporal_link| %>
     <%= render partial: 'links/link', locals: { link: temporal_link } %>
-    <p>
-      <%= link_to "Show this temporal link", temporal_link %>
-    </p>
   <% end %>
 </div>
 
 <%= paginate @temporal_links %>
-
-<%= link_to "New temporal link", new_temporal_link_path %>

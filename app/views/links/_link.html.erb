@@ -1,5 +1,4 @@
-<div id="<%= dom_id link %>">
-
+<div id="<%= dom_id link %>" class="link-details-container">
   <% if @final_url %>
     <p>
       <strong>Link:</strong> 
@@ -36,8 +35,11 @@
   <% end %>
 
   <p>
-    <%= link_to 'Detalle de Accesos', link_accesses_path(link_id: link.id) %>
+    <%= link_to 'Accesos', link_accesses_path(link_id: link.id), class: 'access-details-link' %>
   </p>
+  <% if not @final_url %>
+  <%= link_to "Detalle", link %>
+  <% end %>
 </div>
 
 <%= javascript_include_tag 'openLink' %>

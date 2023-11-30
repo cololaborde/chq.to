@@ -32,7 +32,7 @@ rails db:migrate
 #email: user1@example.com
 #password: password1
 
-#email: user2@example.com
+#email: user2@example.com (sin accesos a los links)
 #password: password2
 
 #email: user3@example.com (sin enlaces)
