@@ -35,6 +35,8 @@
 
 <%= paginate @link_accesses %>
 
+<h1>Accesos por día</h1>
 <% @access_per_day.each do |fecha, cantidad| %>
   <p><%= "Fecha: #{fecha}, Cantidad: #{cantidad}" %></p>
 <% end %>
+<%= paginate @access_per_day, param_name: 'access_page' %>

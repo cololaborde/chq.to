@@ -27,6 +27,7 @@ class LinkAccessesController < ApplicationController
       end
 
     def set_link_access_per_day
-      @access_per_day = LinkAccess.where(link_id: params[:link_id]).group("strftime('%d-%m-%Y', accessed_at)").count
+      result = LinkAccess.where(link_id: params[:link_id]).group("strftime('%d-%m-%Y', accessed_at)").count
+      @access_per_day = Kaminari.paginate_array(result.to_a).page(params[:access_page]).per(5)
     end
 end
