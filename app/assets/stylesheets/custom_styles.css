@@ -193,8 +193,12 @@ h2 {
 }
 
 
-.button-container a:hover, .button-container button:hover {
+.button-container a:hover {
   background-color: #2980b9;
+}
+
+.button-container button:hover {
+  background-color:rgb(156, 36, 36);
 }
 
 .new-button-container {
