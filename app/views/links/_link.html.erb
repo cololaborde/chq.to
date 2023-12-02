@@ -31,12 +31,16 @@
   <% case link.class.to_s %>
   <% when 'EphemeralLink' %>
     <p>
-      <strong>Usado:</strong> <%= link.used %>
+      <p>
+        <strong>Usado:</strong> <%= link.used ? "Si" : "No" %>
+      </p>
     </p>
   <% when 'PrivateLink' %>
-    <p>
-      <strong>Contraseña:</strong> <%= link.password %>
-    </p>
+    <% if not is_index_view %>
+      <p>
+        <strong>Contraseña:</strong> <%= link.password %>
+      </p>
+    <% end %>
   <% when 'TemporalLink' %>
     <p>
       <strong>Vencimiento:</strong> <%= link.expiration_date.strftime("%d-%m-%Y %H:%M:%S") %>
