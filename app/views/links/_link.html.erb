@@ -48,7 +48,7 @@
   <% end %>
 
   <p>
-    <%= link_to 'Accesos', link_accesses_path(link_id: link.id), class: 'access-details-link' %>
+    <%= link_to 'Accesos', link_accesses_path(link_id: link.id, access_go_back: is_index_view ? polymorphic_path(link.class) : polymorphic_path(link)), class: 'access-details-link' %>
   </p>
 
   <% if is_index_view %>
