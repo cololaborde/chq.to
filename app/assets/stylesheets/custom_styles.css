@@ -203,3 +203,17 @@ h2 {
   position: absolute;
   padding: 20px;
 }
+
+.access-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.access_container {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.access-per-day-section {
+  flex: 1;
+}
