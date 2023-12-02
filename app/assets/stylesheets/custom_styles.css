@@ -110,7 +110,7 @@ input[type="password"] {
 }
 
 input[type="submit"] {
-  background-color: #4caf50;
+  background-color: #2980b9;
   color: #fff;
   padding: 10px 15px;
   border: none;
@@ -176,13 +176,22 @@ h2 {
   align-items: center;
 }
 
-.button-container a, .button-container button {
+.button-container a  {
   padding: 8px 8px;
-  background-color: #3498db;
   color: #fff;
   border-radius: 5px;
   border: 1px solid #2980b9;
+  background-color: #3498db;
 }
+
+.button-container button {
+  padding: 8px 8px;
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid rgb(185, 41, 41);
+  background-color: rgb(185, 41, 41);
+}
+
 
 .button-container a:hover, .button-container button:hover {
   background-color: #2980b9;
