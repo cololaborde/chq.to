@@ -221,3 +221,16 @@ h2 {
 .access-per-day-section {
   flex: 1;
 }
+
+.volver-btn {
+  margin-left: 15px;
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none; 
+  border-radius: 5px; 
+}
+
+.volver-btn:hover {
+  background-color: #2980b9;
+}
