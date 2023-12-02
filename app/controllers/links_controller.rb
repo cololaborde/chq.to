@@ -22,6 +22,7 @@ class LinksController < ApplicationController
     end
   
     def edit
+      @edit_go_back = params[:edit_go_back]
     end
   
     def create

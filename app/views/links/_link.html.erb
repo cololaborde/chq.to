@@ -1,7 +1,7 @@
 <div id="<%= dom_id(link, is_index_view) %>" class="link-details-container">
 
   <div class="button-container">
-    <%= link_to "Editar", edit_polymorphic_path(link) %>
+    <%= link_to "Editar", edit_polymorphic_path(link, edit_go_back: is_index_view ? polymorphic_path(link.class) : polymorphic_path(link) ) %>
     <%= button_to "Borrar", link, method: :delete, data: { confirm: '¿Estás seguro?' } %>
   </div>
 
