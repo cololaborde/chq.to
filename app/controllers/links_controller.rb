@@ -17,6 +17,7 @@ class LinksController < ApplicationController
     # controller_name.classify.constantize equivale a TipoLink, es decir a la creación de una nueva instancia de un tipo de link
   
     def new
+      @new_go_back = params[:new_go_back]
       instance_variable_set("@#{controller_name.singularize}", controller_name.classify.constantize.new)
     end
   

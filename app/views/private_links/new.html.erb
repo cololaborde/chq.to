@@ -1,5 +1,5 @@
 <h1>New private link</h1>
-
+<%= render partial: 'links/go_back', locals: { go_back_url: @new_go_back } %>
 <%= form_with(model: @private_link) do |form| %>
   <%= render 'links/form', form: form %>
 <% end %>

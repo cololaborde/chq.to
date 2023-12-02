@@ -7,7 +7,7 @@
 
   <% if is_index_view %>
     <div class="new-button-container">
-      <%= link_to "Nuevo", new_polymorphic_path(link.class) %>
+    <%= link_to "Nuevo", new_polymorphic_path(link.class, new_go_back: polymorphic_path(link.class)) %>
     </div>
   <% end %>
   
