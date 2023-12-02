@@ -166,3 +166,31 @@ h2 {
 .access-details-link:hover {
   text-decoration: underline;
 }
+
+
+.button-container {
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.button-container a, .button-container button {
+  padding: 8px 8px;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid #2980b9;
+}
+
+.button-container a:hover, .button-container button:hover {
+  background-color: #2980b9;
+}
+
+.new-button-container {
+  top: 0;
+  right: 0;
+  position: absolute;
+  padding: 20px;
+}
