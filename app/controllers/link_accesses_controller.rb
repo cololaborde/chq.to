@@ -3,6 +3,7 @@ class LinkAccessesController < ApplicationController
     before_action :set_link_accesses, only: %i[index]
 
     def index
+      @access_go_back = params[:access_go_back]
       @q = @accesses.ransack(params[:q])
       @link_accesses = @q.result().page(params[:page]).per(10)
       set_link_access_per_day
@@ -27,6 +28,7 @@ class LinkAccessesController < ApplicationController
       end
 
     def set_link_access_per_day
-      @access_per_day = LinkAccess.where(link_id: params[:link_id]).group("strftime('%Y-%m-%d', accessed_at)").count
+      result = LinkAccess.where(link_id: params[:link_id]).group("strftime('%d-%m-%Y', accessed_at)").count
+      @access_per_day = Kaminari.paginate_array(result.to_a).page(params[:access_page]).per(5)
     end
 end

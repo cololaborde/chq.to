@@ -1,10 +1,4 @@
+<h1>Detalle</h1>
 <p style="color: green"><%= notice %></p>
-
+<%= render partial: 'links/go_back', locals: { go_back_url: regular_links_path } %>
 <%= render @regular_link %>
-
-<div>
-  <%= link_to "Edit this regular link", edit_regular_link_path(@regular_link) %> |
-  <%= link_to "Back to regular links", regular_links_path %>
-
-  <%= button_to "Destroy this regular link", @regular_link, method: :delete %>
-</div>

@@ -1,12 +1,7 @@
 <h1>Editing temporal link</h1>
-
+<%= render partial: 'links/go_back', locals: { go_back_url: @edit_go_back } %>
 <%= form_with(model: @temporal_link) do |form| %>
   <%= render 'links/form', form: form %>
 <% end %>
 
 <br>
-
-<div>
-  <%= link_to "Show this temporal link", @temporal_link %> |
-  <%= link_to "Back to temporal links", temporal_links_path %>
-</div>

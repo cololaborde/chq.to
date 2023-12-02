@@ -1,10 +1,4 @@
+<h1>Detalle</h1>
 <p style="color: green"><%= notice %></p>
-
+<%= render partial: 'links/go_back', locals: { go_back_url: temporal_links_path } %>
 <%= render @temporal_link %>
-
-<div>
-  <%= link_to "Editar", edit_temporal_link_path(@temporal_link) %> |
-  <%= link_to "Links temporales", temporal_links_path %>
-
-  <%= button_to "Borrar", @temporal_link, method: :delete %>
-</div>
