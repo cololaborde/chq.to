@@ -27,6 +27,6 @@ class LinkAccessesController < ApplicationController
       end
 
     def set_link_access_per_day
-      @access_per_day = LinkAccess.where(link_id: params[:link_id]).group("strftime('%Y-%m-%d', accessed_at)").count
+      @access_per_day = LinkAccess.where(link_id: params[:link_id]).group("strftime('%d-%m-%Y', accessed_at)").count
     end
 end

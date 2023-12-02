@@ -18,7 +18,7 @@
 
   <% if link.is_a?(TemporalLink) %>
     <p>
-      <strong>Vencimiento:</strong> <%= link.expiration_date %>
+      <strong>Vencimiento:</strong> <td><%= link.expiration_date.strftime("%d-%m-%Y %H:%M:%S") %></td>
     </p>
   <% end %>
 
