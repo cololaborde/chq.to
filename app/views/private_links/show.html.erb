@@ -1,7 +1,4 @@
 <p style="color: green"><%= notice %></p>
-
+<%= render partial: 'links/go_back', locals: { go_back_url: root_path } %>
 <%= render @private_link %>
 
-<div>
-  <%= link_to "Links privados", private_links_path %>
-</div>

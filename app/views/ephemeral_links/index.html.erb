@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Ephemeral links</h1>
-
+<%= render partial: 'links/go_back', locals: { go_back_url: root_path } %>
 <div id="ephemeral_links">
   <% @ephemeral_links.each do |ephemeral_link| %>
     <%= render partial: 'links/link', locals: { link: ephemeral_link, is_index_view: true } %>

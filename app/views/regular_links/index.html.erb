@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Regular links</h1>
-
+<%= render partial: 'links/go_back', locals: { go_back_url: root_path } %>
 <div id="regular_links">
   <% @regular_links.each do |regular_link| %>
     <%= render partial: 'links/link', locals: { link: regular_link, is_index_view: true } %>
