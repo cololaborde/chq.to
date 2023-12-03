@@ -49,7 +49,7 @@ class LinkRedirectionController < ApplicationController
 
   def access_ephemeral(link)
     if link.used
-      render file: "#{Rails.root}/public/403.html", status: :not_found, layout: false
+      render file: "#{Rails.root}/public/403.html", status: :forbidden, layout: false
     else
       link.update(used: true)
       create_access_and_redirect(link)
