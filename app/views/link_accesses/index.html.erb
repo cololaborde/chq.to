@@ -2,13 +2,13 @@
 <%= render partial: 'links/go_back', locals: { go_back_url: @access_go_back } %>
 <div class="search-section">
   <%= search_form_for @q, url: link_accesses_path(link_id: @link&.id), method: :get do |f| %>
-    <%= f.label :accessed_at_gteq, "Fecha y Hora desde" %>
+    <%= f.label :accessed_at_gteq, "Desde" %>
     <%= f.datetime_field :accessed_at_gteq %>
 
-    <%= f.label :accessed_at_lteq, "Fecha y Hora hasta" %>
+    <%= f.label :accessed_at_lteq, "Hasta" %>
     <%= f.datetime_field :accessed_at_lteq %>
 
-    <%= f.label :ip_address_cont, "Dirección IP contiene" %>
+    <%= f.label :ip_address_cont, "Dirección IP" %>
     <%= f.text_field :ip_address_cont %>
 
     <%= hidden_field_tag :link_id, @link&.id %>
