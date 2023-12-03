@@ -61,3 +61,7 @@ es:
       not_saved:
         one: "1 error impidió que este %{resource} se guardara:"
         other: "%{count} errores impidieron que este %{resource} se guardara:"
+  views:
+    buttons:
+      sign_in: "Iniciar sesión"
+      sign_up: "Registrarse"
