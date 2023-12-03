@@ -17,7 +17,7 @@ rm Gemfile.lock
 bundle
 ```
 
-2. Correr las migraciones:
+2. Crear base de datos y correr las migraciones:
 ```bash
 #bash
 rails db:migrate
