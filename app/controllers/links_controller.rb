@@ -64,7 +64,7 @@ class LinksController < ApplicationController
   
     def check_user_ownership
       unless instance_variable_get("@#{controller_name.singularize}").user == current_user
-        render file: "#{Rails.root}/public/403.html", status: :not_found, layout: false
+        render file: "#{Rails.root}/public/403.html", status: :forbidden, layout: false
       end
     end
   
