@@ -1,4 +1,4 @@
-<%= form_tag(access_private_path(link.slug), method: :post) do %>
+<%= form_tag(access_private_path(link.slug), method: :post, data: { turbo: false }) do %>
   <label for="password">Contraseña:</label>
   <%= password_field_tag :password %>
   <%= submit_tag "Acceder" %>
