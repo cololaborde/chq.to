@@ -3,7 +3,7 @@ class LinkAccessesController < ApplicationController
     before_action :set_link_accesses, only: %i[index]
 
     def index
-      @access_go_back = params[:access_go_back]
+      @access_go_back = params[:access_go_back] || polymorphic_path(@link)
       @q = @accesses.ransack(params[:q])
       @link_accesses = @q.result().page(params[:page]).per(10)
       set_link_access_per_day
