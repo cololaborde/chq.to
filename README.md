@@ -49,6 +49,10 @@ rails s
 
 # Diseño
 
+## Aclaración: 
+
+Soy consciente de que el principio de Convención sobre Configuración (COC) fue afectado, debido a algunas decisiones de diseño tomadas previo a iniciar el desarrollo, diseño que fue mutando en parte por algunos errores encontrados cuando la aplicación se encontraba avanzada y por otro lado debido a mi inexperiencia con el framework Rails. Una vez determinado el curso del modelado de la aplicación, se priorizó en gran parte el principio DRY, siempre que se pudo y que no se consideró que afectara a la estructura de la aplicación. 
+
 ## Base de datos
 
 ### Tablas
@@ -88,8 +92,8 @@ Existe una clase `Link` que aglutina todos los atributos en común de los enlace
 ### Controladores
 
 - `ApplicationController`
-- `HomeController` < `ApplicationController`: utilizado para listar los distintos tipos de links de un usuario
-- `LinkRedirectionController` < `ApplicationController`: Para el manejo de las redirecciones de los links una vez que son accedidos
+- `HomeController` < `ApplicationController`: utilizado para listar los distintos tipos de links de un usuario.
+- `LinkRedirectionController` < `ApplicationController`: Para el manejo de las redirecciones de los links una vez que son accedidos.
 - `LinkAccessesController` < `ApplicationController`: Para el registro de los accesos a los links.
 - `ErrorsController` < `ApplicationController`: Para el retorno de templates de error como not found.
 
@@ -109,10 +113,10 @@ Existe una clase `Link` que aglutina todos los atributos en común de los enlace
 
 Se realizaron ciertos partials para algunos elementos compartidos, pero manteniendo también vistas y componentes específicos a fin de facilitar el desarrollo:
 
-- `links`: Formularios y elementos compartidos entre todos los links
-- `users`: Vistas creadas por devise para el manejo de usuarios
-- `home`: Templates para los listados de links, agrupados por tipo, los cuales son renderizados haciendo uso de un helper (HomeHelper), evitando así la sobre carga de la vista.
-- Vistas específicas de cada tipo de link
+- `links`: Formularios y elementos compartidos entre todos los links.
+- `users`: Vistas creadas por devise para el manejo de usuarios.
+- `home`: Punto de entrada de la aplicación, donde se listan los 5 links mas visitados de cada tipo, los cuales son renderizados haciendo uso de un helper (HomeHelper), evitando así la sobre carga de la vista.
+- Vistas específicas de cada tipo de link.
 
 
 ### Generación del slug
