@@ -25,12 +25,22 @@ es:
         too_big: "es demasiado grande (máximo %{count})"
         too_small: "es demasiado pequeño (mínimo %{count})"
         wrong_length: "tiene una longitud incorrecta (debe ser %{count} caracteres)"
+        destination_url: "URL destino"
     attributes:
       user:
         email: "Correo electrónico"
         password: "Contraseña"
         password_confirmation: "Confirmación de contraseña"
         current_password: "Contraseña actual"
+      link:
+        destination_url: "URL destino"
+        name: "Nombre"
+        user_id: "Usuario"
+        expiration_date: "Fecha de vencimiento"
+        password: "Contraseña"
+        password_confirmation: "Confirmación de contraseña"
+        used: "Usado"
+        type: "Tipo"
   errors:
     messages:
       not_found: "no encontrado"
