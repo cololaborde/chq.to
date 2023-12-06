@@ -25,7 +25,6 @@ es:
         too_big: "es demasiado grande (máximo %{count})"
         too_small: "es demasiado pequeño (mínimo %{count})"
         wrong_length: "tiene una longitud incorrecta (debe ser %{count} caracteres)"
-        destination_url: "URL destino"
     attributes:
       user:
         email: "Correo electrónico"
@@ -46,6 +45,4 @@ es:
       not_found: "no encontrado"
       already_confirmed: "ya ha sido confirmado"
       not_locked: "no está bloqueado"
-  Name: "Nombre"
-  Destination URL: "URL de destino"
   
