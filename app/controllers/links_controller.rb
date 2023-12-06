@@ -8,6 +8,9 @@ class LinksController < ApplicationController
     # instance_variable_set("@#{controller_name}" equivale a que se setee la variable @tipo_links
   
     def index
+      if current_user.send(controller_name).all.where(user_id: current_user.id).count == 0
+        redirect_to root_path, notice: "No tienes #{controller_name.humanize} links creados."
+      end
       instance_variable_set("@#{controller_name}", (current_user.send(controller_name).all.where(user_id: current_user.id)).page(params[:page]).per(5))
     end
   
