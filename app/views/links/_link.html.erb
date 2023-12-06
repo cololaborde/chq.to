@@ -20,10 +20,13 @@
   <% end %>
   
   <% if not is_index_view %>
-    <p>
-      <strong>Link:</strong> 
-      <a href="#" onclick="openLink('<%= @final_url %>'); return false;"><%= @final_url %></a>
-    </p>
+    <div class="copy-to-clipboard">
+      <p>
+        <strong>Link:</strong> 
+        <a href="#" onclick="openLink('<%= @final_url %>'); return false;"><%= @final_url %></a>
+        <button class="clipboard-btn" data-clipboard-text="<%= @final_url %>">Copiar</button>
+      </p>
+    </div>
   <% end %>
 
   <p>
@@ -58,3 +61,4 @@
 </div>
 
 <%= javascript_include_tag 'openLink' %>
+<%= javascript_include_tag 'clipboard' %>
