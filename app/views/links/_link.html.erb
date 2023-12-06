@@ -2,7 +2,7 @@
 
   <div class="button-container">
     <%= link_to "Editar", edit_polymorphic_path(link, edit_go_back: is_index_view ? polymorphic_path(link.class) : polymorphic_path(link) ) %>
-    <%= button_to "Borrar", link, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+    <%= button_to "Borrar", link, method: :delete, data: {turbo_method: :delete, turbo_confirm: 'Seguro deseas eliminar?'} %>
   </div>
 
   <% if is_index_view %>

@@ -5,7 +5,7 @@
     <%= submit_tag 'Cerrar Sesión' %>
   <% end %>
   <div class="delete-user-button">
-  <%= form_tag(user_registration_path, method: :delete, data: { confirm: '¿Estás seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.' }) do %>
+  <%= form_tag(user_registration_path, method: :delete, data: {turbo_method: :delete, turbo_confirm: 'Estás seguro? Se perderá tu cuenta y todos tus links'}) do %>
     <%= submit_tag 'Eliminar Usuario' %>
   <% end %>
 </div>
