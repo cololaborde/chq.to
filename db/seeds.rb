@@ -61,13 +61,15 @@ User.second.ephemeral_links.create(destination_url: "https://www.youtube.com", s
 User.first.links.each do |link|
     if not link.is_a?(EphemeralLink) then
         rand(1..20).times do
-            link.link_accesses.create(accessed_at: Time.now, ip_address: "192.168.0.#{rand(1..255)}")
+            date = rand(1..30).days.ago
+            link.link_accesses.create(accessed_at: date, ip_address: "192.168.0.#{rand(1..255)}")
         end
     end
 end
 
 User.first.ephemeral_links.limit(3).each do |link|
     link.update(used: true)
-    link.link_accesses.create(accessed_at: Time.now, ip_address: "192.168.0.#{rand(1..255)}")
+    date = rand(1..30).days.ago
+    link.link_accesses.create(accessed_at: date, ip_address: "192.168.0.#{rand(1..255)}")
 end
 
