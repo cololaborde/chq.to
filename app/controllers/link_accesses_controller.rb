@@ -21,14 +21,14 @@ class LinkAccessesController < ApplicationController
         if params[:link_id].present?
           # Se proporcionó link_id, filtramos por ese enlace específico
           @link = current_user.links.find(params[:link_id])
-          @accesses = @link.link_accesses.merge(@q.result)
+          @accesses = @link.link_accesses.order("accessed_at DESC").merge(@q.result)
         else
           render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
         end
       end
 
     def set_link_access_per_day
-      result = LinkAccess.where(link_id: params[:link_id]).group("strftime('%d-%m-%Y', accessed_at)").count
+      result = LinkAccess.where(link_id: params[:link_id]).order("accessed_at DESC").group("strftime('%d-%m-%Y', accessed_at)").count
       @access_per_day = Kaminari.paginate_array(result.to_a).page(params[:access_page]).per(5)
     end
 end
