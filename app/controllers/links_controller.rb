@@ -30,8 +30,6 @@ class LinksController < ApplicationController
   
     def create
       instance_variable_set("@#{controller_name.singularize}", current_user.send(controller_name).build(link_params))
-      # esto mejor en el modelo
-      instance_variable_get("@#{controller_name.singularize}").slug = SlugGenerator.generate
   
       if instance_variable_get("@#{controller_name.singularize}").save
         redirect_to instance_variable_get("@#{controller_name.singularize}"), notice: "#{controller_name.humanize} link was successfully created."

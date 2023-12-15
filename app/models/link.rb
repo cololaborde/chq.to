@@ -5,5 +5,14 @@ class Link < ApplicationRecord
   validates :type, presence: true
   validates :destination_url, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
   has_many :link_accesses, dependent: :destroy
+
+  before_validation :get_slug, on: :create
+
+  private
+
+  def get_slug
+    self.slug = SlugGenerator.generate
+  end
+
 end
   
