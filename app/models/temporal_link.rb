@@ -1,5 +1,4 @@
 class TemporalLink < Link
-  attribute :expiration_date, :datetime
   validates :expiration_date, presence: true
   validate :expiration_date_cannot_be_in_the_past
 
