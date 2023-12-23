@@ -6,11 +6,11 @@ class Link < ApplicationRecord
   validates :destination_url, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
   has_many :link_accesses, dependent: :destroy
 
-  before_validation :get_slug, on: :create
+  before_validation :set_slug, on: :create
 
   private
 
-  def get_slug
+  def set_slug
     self.slug = SlugGenerator.generate
   end
 
