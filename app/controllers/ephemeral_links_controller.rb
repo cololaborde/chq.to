@@ -1,2 +1,0 @@
-class EphemeralLinksController < LinksController
-end
