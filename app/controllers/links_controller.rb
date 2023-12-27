@@ -4,7 +4,8 @@ class LinksController < ApplicationController
   before_action :check_user_ownership, only: %i[show edit update destroy]
 
   def index
-    @links = current_user.links.where(user_id: current_user.id)
+    type = params[:type]
+    @links = current_user.links.where(user_id: current_user.id, type: type)
     redirect_to root_path, notice: "No tienes #{controller_name.humanize} creados." if @links.empty?
     @links = @links.page(params[:page]).per(5)
   end

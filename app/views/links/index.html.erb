@@ -1,11 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Links privados</h1>
+<h1>Links</h1>
 <%= render partial: 'links/go_back', locals: { go_back_url: root_path } %>
 <div id="private_links">
-  <% @private_links.each do |private_link| %>
-    <%= render partial: 'links/link', locals: { link: private_link, is_index_view: true } %>
-  <% end %>
+<% @links.each do |link| %>
+  <%= render partial: 'links/link', locals: { link: link, is_index_view: true } %>
+<% end %>
 </div>
 
-<%= paginate @private_links %>
+<%= paginate @links %>
