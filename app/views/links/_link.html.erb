@@ -1,25 +1,17 @@
-<div id="<%= dom_id(link, is_index_view) %>" class="link-details-container">
+<div id="<%= dom_id(@link, is_index_view) %>" class="link-details-container">
 
   <div class="button-container">
-    <% if is_index_view %>
-      <%= link_to "Ver", link %>
-    <% end %>
+    <%= link_to "Ver", link_path(@link) if is_index_view %>
 
     <p style="margin-left: 10px; margin-right: 35px">
-      <%= link_to 'Accesos', link_accesses_path(link_id: link.id, access_go_back: is_index_view ? polymorphic_path(link.class) : polymorphic_path(link)), class: 'access-details-link' %>
+      <%= link_to 'Accesos', link_accesses_path(link_id: @link.id, access_go_back: is_index_view ? link_path(@link) : link_path(@link)), class: 'access-details-link' %>
     </p>
 
-    <%= link_to "Editar", edit_polymorphic_path(link, edit_go_back: is_index_view ? polymorphic_path(link.class) : polymorphic_path(link) ) %>
-    <%= button_to "Borrar", link, method: :delete, data: {turbo_method: :delete, turbo_confirm: 'Seguro deseas eliminar?'} %>
-  </div>
-
-  <% if is_index_view %>
-    <div class="new-button-container">
-    <%= link_to "Nuevo", new_polymorphic_path(link.class, new_go_back: polymorphic_path(link.class)) %>
+    <%= link_to "Editar", edit_link_path(@link, edit_go_back: is_index_view ? link_path(@link) : link_path(@link) ) %>
+      <%= button_to "Borrar", link_path(@link), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Seguro deseas eliminar?' } %>
     </div>
-  <% end %>
-  
-  <% if not is_index_view %>
+
+  <% unless is_index_view %>
     <div class="copy-to-clipboard">
       <p>
         <strong>Link:</strong> 
@@ -31,30 +23,25 @@
 
   <p>
     <strong>Nombre:</strong>
-    <%= link.name %>
+    <%= @link.name %>
   </p>
 
   <p>
     <strong>URL destino:</strong>
-    <a href="#" onclick="openLink('<%= link.destination_url %>'); return false;"><%= link.destination_url %></a>
+    <a href="#" onclick="openLink('<%= @link.destination_url %>'); return false;"><%= @link.destination_url %></a>
   </p>
 
-  <% case link.class.to_s %>
-  <% when 'EphemeralLink' %>
+  <% if @link.class == EphemeralLink %>
     <p>
-      <p>
-        <strong>Usado:</strong> <%= link.used ? "Si" : "No" %>
-      </p>
+      <strong>Usado:</strong> <%= @link.used ? "Si" : "No" %>
     </p>
-  <% when 'PrivateLink' %>
-    <% if not is_index_view %>
-      <p>
-        <strong>Contraseña:</strong> <%= link.password %>
-      </p>
-    <% end %>
-  <% when 'TemporalLink' %>
+  <% elsif @link.class == PrivateLink && !is_index_view %>
     <p>
-      <strong>Vencimiento:</strong> <%= link.expiration_date.strftime("%d-%m-%Y %H:%M:%S") %>
+      <strong>Contraseña:</strong> <%= @link.password %>
+    </p>
+  <% elsif @link.class == TemporalLink %>
+    <p>
+      <strong>Vencimiento:</strong> <%= @link.expiration_date.strftime("%d-%m-%Y %H:%M:%S") %>
     </p>
   <% end %>
 
