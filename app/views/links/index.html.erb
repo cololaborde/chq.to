@@ -1,10 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Links</h1>
-<%= render partial: 'links/go_back', locals: { go_back_url: root_path } %>
-<div id="private_links">
+<%= render partial: 'links/partials/go_back', locals: { go_back_url: root_path } %>
+<div id="links">
 <% @links.each do |link| %>
-  <%= render partial: 'links/link', locals: { link: link, is_index_view: true } %>
+  <%= render partial: 'links/partials/link', locals: { link: link, is_index_view: true } %>
 <% end %>
 </div>
 

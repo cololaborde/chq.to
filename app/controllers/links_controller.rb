@@ -6,7 +6,9 @@ class LinksController < ApplicationController
   def index
     type = params[:type]
     @links = current_user.links.where(user_id: current_user.id, type: type)
-    redirect_to root_path, notice: "No tienes #{controller_name.humanize} creados." if @links.empty?
+    if @links.size.zero?
+      redirect_to root_path, notice: "No tienes links creados."
+    end
     @links = @links.page(params[:page]).per(5)
   end
 
@@ -28,7 +30,7 @@ class LinksController < ApplicationController
     @link.type = params[:type]
 
     if @link.save
-      redirect_to @link, notice: "#{controller_name.humanize} link was successfully created."
+      redirect_to @link, notice: "#{@link.type.humanize} link was successfully created."
     else
       render :new, status: :unprocessable_entity
     end

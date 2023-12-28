@@ -1,7 +1,7 @@
 <h1>Editar link privado</h1>
-<%= render partial: 'links/go_back', locals: { go_back_url: @edit_go_back } %>
-<%= form_with(model: @private_link) do |form| %>
-  <%= render 'links/form', form: form %>
+<%= render partial: 'links/partials/go_back', locals: { go_back_url: @edit_go_back } %>
+<%= form_with(model: @link) do |form| %>
+  <%= render 'links/partials/form', form: form %>
 <% end %>
 
 <br>

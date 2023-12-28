@@ -1,5 +1,5 @@
 <h1>Accesos</h1>
-<%= render partial: 'links/go_back', locals: { go_back_url: @access_go_back } %>
+<%= render partial: 'links/partials/go_back', locals: { go_back_url: @access_go_back } %>
 <div class="search-section">
   <%= search_form_for @q, url: link_accesses_path(link_id: @link&.id), method: :get do |f| %>
     <%= f.label :accessed_at_gteq, "Desde" %>
