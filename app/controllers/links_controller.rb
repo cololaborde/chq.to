@@ -2,10 +2,10 @@ class LinksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_link, only: %i[show edit update destroy]
   before_action :check_user_ownership, only: %i[show edit update destroy]
+  before_action :set_type, only: %i[index new create]
 
   def index
-    type = params[:type]
-    @links = current_user.links.where(user_id: current_user.id, type: type)
+    @links = current_user.links.where(user_id: current_user.id, type: @type)
     if @links.size.zero?
       redirect_to root_path, notice: "No tienes links creados."
     end
@@ -17,7 +17,6 @@ class LinksController < ApplicationController
 
   def new
     @new_go_back = params[:new_go_back]
-    set_type
     @link = Link.new
   end
 
@@ -27,7 +26,7 @@ class LinksController < ApplicationController
 
   def create
     @link = current_user.links.build(link_params)
-    @link.type = params[:type]
+    @link.type = @type
 
     if @link.save
       redirect_to @link, notice: "#{@link.type.humanize} link was successfully created."
@@ -56,7 +55,12 @@ class LinksController < ApplicationController
   end
 
   def set_type
-    @type = params[:type]
+    type = params[:type]
+    if type.nil? || type.empty? || !Link::TYPES.include?(type)
+      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+    else
+      @type = type
+    end
   end
 
   def set_link
