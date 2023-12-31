@@ -1,4 +1,4 @@
-<%= form_with(model: form.object, local: true, url: (@link.persisted? ? link_path(@link, type: @type) : links_path(type: @type)), method: :post) do |f| %>
+<%= form_with(model: form.object, local: true, url: links_path(type: @link.type), method: (@link.persisted? ? :patch : :post)) do |f| %>
   <% if form.object.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(form.object.errors.count, "error") %> impidió que el link pueda ser guardado:</h2>

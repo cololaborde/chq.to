@@ -22,6 +22,7 @@ class LinksController < ApplicationController
 
   def edit
     @edit_go_back = params[:edit_go_back]
+    @type = @link.type
   end
 
   def create
@@ -37,11 +38,11 @@ class LinksController < ApplicationController
 
   def update
     if @link.update(link_params)
-      redirect_to @link, notice: "#{controller_name.humanize} link was successfully updated."
+      redirect_to @link, notice: "#{@link.type.humanize} link was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
-  end
+  end  
 
   def destroy
     @link.destroy!
@@ -65,7 +66,6 @@ class LinksController < ApplicationController
 
   def set_link
     link = current_user.links.find_by(id: params[:id])
-    puts "linkardo: ", link.inspect
     render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false if link.nil?
 
     @link = link
