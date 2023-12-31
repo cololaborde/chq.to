@@ -13,7 +13,7 @@
 
   <% if is_index_view %>
     <div class="new-button-container">
-      <%= link_to "Nuevo", new_link_path(new_go_back: link_path(link), type: link.class) %>
+      <%= link_to "Nuevo", new_link_path(new_go_back: links_path(type: link.class), type: link.class) %>
     </div>
   <% end %>
 
