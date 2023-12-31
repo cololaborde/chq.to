@@ -8,6 +8,8 @@ class Link < ApplicationRecord
 
   before_validation :set_slug, on: :create
 
+  TYPES = ['RegularLink', 'TemporalLink', 'PrivateLink', 'EphemeralLink'].freeze
+
   private
 
   def set_slug
