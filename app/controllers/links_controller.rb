@@ -41,6 +41,7 @@ class LinksController < ApplicationController
     if @link.update(link_params)
       redirect_to link_path(@link), notice: "#{@link.type.humanize} link was successfully updated."
     else
+      @type = @link.type
       render :edit, status: :unprocessable_entity
     end
   end
