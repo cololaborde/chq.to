@@ -1,7 +1,6 @@
-<h1>Editar link</h1>
+<h1>Editar Link</h1>
 <%= render partial: 'links/partials/go_back', locals: { go_back_url: @edit_go_back } %>
-<%= form_with(model: @link, url: links_path(type: @link.type), method: :patch) do |form| %>
+<%= form_with(model: @link, url: link_path(@link), method: :patch, local: true, scope: :link) do |form| %>
   <%= render 'links/partials/form', form: form %>
 <% end %>
 
-<br>
