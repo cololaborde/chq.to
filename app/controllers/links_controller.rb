@@ -22,10 +22,9 @@ class LinksController < ApplicationController
 
   def create
     @link = current_user.links.build(link_params)
-    @link.type = @type
-
+    @link.type = @type  
     if @link.save
-      redirect_to @link, notice: "#{@link.type.humanize} link was successfully created."
+      redirect_to link_path(@link), notice: "#{@link.type.humanize} link was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -68,10 +67,12 @@ class LinksController < ApplicationController
 
   def set_link
     link = current_user.links.find_by(id: params[:id])
-    render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false if link.nil?
-
-    @link = link
-    @final_url = combine_attributes(@link)
+    if link.nil?
+      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false if link.nil?
+    else
+      @link = link
+      @final_url = combine_attributes(@link)
+    end
   end
 
   def link_params
