@@ -47,7 +47,7 @@ class LinksController < ApplicationController
 
   def destroy
     @link.destroy!
-    redirect_to send("#links_url"), notice: "#{controller_name.humanize} link was successfully destroyed."
+    redirect_to links_path(type: @link.type), notice: "Link was successfully destroyed."
   end
 
   private
