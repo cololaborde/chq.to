@@ -47,7 +47,9 @@
     </p>
   <% elsif link.class == TemporalLink %>
     <p>
-      <strong>Vencimiento:</strong> <%= link.expiration_date.strftime("%d-%m-%Y %H:%M:%S") %>
+      <% if link.expiration_date %>
+        <strong>Vencimiento:</strong> <%= link.expiration_date.strftime("%d-%m-%Y %H:%M:%S") %>
+      <% end %>
     </p>
   <% end %>
 
