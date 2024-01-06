@@ -1,5 +1,6 @@
 <h1>Nuevo Link</h1>
 <%= render partial: 'links/partials/go_back', locals: { go_back_url: @new_go_back } %>
-<%= form_with(model: @link, url: links_path(type: @type), method: :post, scope: :link) do |form| %>
+<%= form_with(model: @link, url: links_path(type: @type, new_go_back: @new_go_back), method: :post, scope: :link) do |form| %>
   <%= render 'links/partials/form', form: form %>
 <% end %>
+

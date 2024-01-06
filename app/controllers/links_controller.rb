@@ -26,7 +26,8 @@ class LinksController < ApplicationController
     if @link.save
       redirect_to link_path(@link), notice: "#{@link.type.humanize} link was successfully created."
     else
-      render :new, status: :unprocessable_entity, locals: { type: @type }, notice: "Error"
+      @new_go_back = params[:new_go_back]
+      render :new, status: :unprocessable_entity, locals: { type: @type, new_go_back: @new_go_back }, notice: "Error"
     end
   end
 
