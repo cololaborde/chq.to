@@ -99,13 +99,6 @@ Existe una clase `Link` que aglutina todos los atributos en común de los enlace
 
 - `LinksController` < `ApplicationController`
 
-  Diseñado manteniendo el foco en DRY, definiendo toda la lógica compartida a partir del nombre del controlador y redefiniendo solo los métodos que sean necesarios
-
-- `RegularLinksController` < `LinksController`
-- `TemporalLinksController` < `LinksController`
-- `PrivateLinksController`  < `LinksController`
-- `EphemeralLinksController` < `LinksController`
-
 - Controladores definidos por `devise` para el manejo de usuarios, sesiones y autenticación.
 
 
@@ -114,10 +107,9 @@ Existe una clase `Link` que aglutina todos los atributos en común de los enlace
 Se realizaron ciertos partials para algunos elementos compartidos, pero manteniendo también vistas y componentes específicos a fin de facilitar el desarrollo:
 
 - `links`: Formularios y elementos compartidos entre todos los links.
+- `link_accesses`: Vistas para el muestreo de accesos totales y diarios de los links.
 - `users`: Vistas creadas por devise para el manejo de usuarios.
 - `home`: Punto de entrada de la aplicación, donde se listan los 5 links mas visitados de cada tipo, los cuales son renderizados haciendo uso de un helper (HomeHelper), evitando así la sobre carga de la vista.
-- Vistas específicas de cada tipo de link.
-
 
 ### Generación del slug
 
