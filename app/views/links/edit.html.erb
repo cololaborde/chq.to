@@ -1,0 +1,15 @@
+<% case @type %>
+  <% when 'RegularLink' %>
+    <h1>Editar link regular</h1>
+  <% when 'TemporalLink' %>
+    <h1>Editar link temporal</h1>
+  <% when 'PrivateLink' %>
+    <h1>Editar link privado</h1>
+  <% when 'EphemeralLink' %>
+    <h1>Editar link efímero</h1>
+  <% end %>
+<%= render partial: 'links/partials/go_back', locals: { go_back_url: @edit_go_back } %>
+<%= form_with(model: @link, url: link_path(@link), method: :patch, local: true, scope: :link) do |form| %>
+  <%= render 'links/partials/form', form: form %>
+<% end %>
+

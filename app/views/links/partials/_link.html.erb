@@ -1,0 +1,59 @@
+<div id="<%= dom_id(link, is_index_view) %>" class="link-details-container">
+
+  <div class="button-container">
+    <%= link_to "Ver", link_path(link) if is_index_view %>
+
+    <p style="margin-left: 10px; margin-right: 35px">
+      <%= link_to 'Accesos', link_accesses_path(link_id: link.id, access_go_back: is_index_view ? link_path(link) : link_path(link)), class: 'access-details-link' %>
+    </p>
+
+    <%= link_to "Editar", edit_link_path(link, edit_go_back: is_index_view ? link_path(link) : link_path(link) ) %>
+      <%= button_to "Borrar", link_path(link), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Seguro deseas eliminar?' } %>
+    </div>
+
+  <% if is_index_view %>
+    <div class="new-button-container">
+      <%= link_to "Nuevo", new_link_path(new_go_back: links_path(type: link.class), type: link.class) %>
+    </div>
+  <% end %>
+
+  <% unless is_index_view %>
+    <div class="copy-to-clipboard">
+      <p>
+        <strong>Link:</strong> 
+        <a href="#" onclick="openLink('<%= @final_url %>'); return false;"><%= @final_url %></a>
+        <button class="clipboard-btn" data-clipboard-text="<%= @final_url %>">Copiar</button>
+      </p>
+    </div>
+  <% end %>
+
+  <p>
+    <strong>Nombre:</strong>
+    <%= link.name %>
+  </p>
+
+  <p>
+    <strong>URL destino:</strong>
+    <a href="#" onclick="openLink('<%= link.destination_url %>'); return false;"><%= link.destination_url %></a>
+  </p>
+
+  <% if link.class == EphemeralLink %>
+    <p>
+      <strong>Usado:</strong> <%= link.used ? "Si" : "No" %>
+    </p>
+  <% elsif link.class == PrivateLink && !is_index_view %>
+    <p>
+      <strong>Contraseña:</strong> <%= link.password %>
+    </p>
+  <% elsif link.class == TemporalLink %>
+    <p>
+      <% if link.expiration_date %>
+        <strong>Vencimiento:</strong> <%= link.expiration_date.strftime("%d-%m-%Y %H:%M:%S") %>
+      <% end %>
+    </p>
+  <% end %>
+
+</div>
+
+<%= javascript_include_tag 'openLink' %>
+<%= javascript_include_tag 'clipboard' %>

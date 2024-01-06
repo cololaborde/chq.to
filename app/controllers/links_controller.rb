@@ -1,94 +1,85 @@
 class LinksController < ApplicationController
-    before_action :authenticate_user!
-    before_action :set_link, only: %i[show edit update destroy]
-    before_action :check_user_ownership, only: %i[show edit update destroy]
+  before_action :authenticate_user!
+  before_action :set_link, only: %i[show edit update destroy]
+  before_action :check_user_ownership, only: %i[show edit update destroy]
+  before_action :set_type, only: %i[index new create]
 
-    # @#{controller_name} retorna el nombre del controlador
-    # current_user.send(controller_name) equivale a current_user.tipo_links
-    # instance_variable_set("@#{controller_name}" equivale a que se setee la variable @tipo_links
-  
-    def index
-      if current_user.send(controller_name).all.where(user_id: current_user.id).count == 0
-        redirect_to root_path, notice: "No tienes #{controller_name.humanize} creados."
-      end
-      instance_variable_set("@#{controller_name}", (current_user.send(controller_name).all.where(user_id: current_user.id)).page(params[:page]).per(5))
+  def index
+    @links = current_user.links.where(user_id: current_user.id, type: @type)
+    if @links.size.zero?
+      redirect_to root_path, notice: "No tienes links creados."
     end
-  
-    def show
-    end
-
-    # controller_name.classify.constantize equivale a TipoLink, es decir a la creación de una nueva instancia de un tipo de link
-  
-    def new
-      @new_go_back = params[:new_go_back]
-      instance_variable_set("@#{controller_name.singularize}", controller_name.classify.constantize.new)
-    end
-  
-    def edit
-      @edit_go_back = params[:edit_go_back]
-    end
-  
-    def create
-      instance_variable_set("@#{controller_name.singularize}", current_user.send(controller_name).build(link_params))
-      instance_variable_get("@#{controller_name.singularize}").slug = SlugGenerator.generate
-  
-      if instance_variable_get("@#{controller_name.singularize}").save
-        redirect_to instance_variable_get("@#{controller_name.singularize}"), notice: "#{controller_name.humanize} link was successfully created."
-      else
-        respond_to do |format|
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: instance_variable_get("@#{controller_name.singularize}").errors, status: :unprocessable_entity }
-        end
-      end
-    end
-  
-    def update
-      respond_to do |format|
-        if instance_variable_get("@#{controller_name.singularize}").update(link_params)
-          format.html { redirect_to send("#{controller_name.singularize}_url", instance_variable_get("@#{controller_name.singularize}")), notice: "#{controller_name.humanize} link was successfully updated." }
-          format.json { render :show, status: :ok, location: instance_variable_get("@#{controller_name.singularize}") }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: instance_variable_get("@#{controller_name.singularize}").errors, status: :unprocessable_entity }
-        end
-      end
-    end
-  
-    def destroy
-      instance_variable_get("@#{controller_name.singularize}").destroy!
-  
-      respond_to do |format|
-        format.html { redirect_to send("#{controller_name}_url"), notice: "#{controller_name.humanize} link was successfully destroyed." }
-        format.json { head :no_content }
-      end
-    end
-  
-    private
-  
-    def check_user_ownership
-      unless instance_variable_get("@#{controller_name.singularize}").user == current_user
-        render file: "#{Rails.root}/public/403.html", status: :forbidden, layout: false
-      end
-    end
-  
-    def set_link
-        link = current_user.send(controller_name).find_by(id: params[:id])
-        
-        if link.nil?
-            render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
-        else
-            instance_variable_set("@#{controller_name.singularize}", link)
-            @final_url = combine_attributes(instance_variable_get("@#{controller_name.singularize}"))
-        end
-    end
-  
-    def link_params
-      params.require(controller_name.singularize.to_sym).permit(:name, :destination_url)
-    end
-
-    def combine_attributes(link)
-      "http://#{request.host_with_port}/l/#{link.slug}"
-    end
-
+    @links = @links.page(params[:page]).per(5)
   end
-  
+
+  def show
+  end
+
+  def new
+    @new_go_back = params[:new_go_back]
+    @link = Link.new
+  end
+
+  def create
+    @link = current_user.links.build(link_params.merge(type: params[:type].constantize))
+    if @link.save
+      redirect_to link_path(@link), notice: "#{@link.type.humanize} link was successfully created."
+    else
+      @new_go_back = params[:new_go_back]
+      render :new, status: :unprocessable_entity, locals: { type: @type, new_go_back: @new_go_back }, notice: "Error"
+    end
+  end
+
+  def edit
+    @edit_go_back = params[:edit_go_back]
+    @link = Link.find(params[:id])
+    @type = @link.type
+  end
+
+  def update
+    if @link.update(link_params)
+      redirect_to link_path(@link), notice: "#{@link.type.humanize} link was successfully updated."
+    else
+      @type = @link.type
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @link.destroy!
+    redirect_to links_path(type: @link.type), notice: "Link was successfully destroyed."
+  end
+
+  private
+
+  def check_user_ownership
+    render file: "#{Rails.root}/public/403.html", status: :forbidden, layout: false unless @link.user == current_user
+  end
+
+  def set_type
+    type = params[:type]
+    if type.nil? || type.empty? || !Link::TYPES.include?(type)
+      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+    else
+      @type = type
+    end
+  end
+
+  def set_link
+    link = current_user.links.find_by(id: params[:id])
+    if link.nil?
+      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false if link.nil?
+    else
+      @link = link
+      @final_url = combine_attributes(@link)
+    end
+  end
+
+  def link_params
+    params.require(:link).permit(:name, :destination_url, :expiration_date, :password)
+  end
+
+  def combine_attributes(link)
+    public_link_url(slug: link.slug)
+  end
+end

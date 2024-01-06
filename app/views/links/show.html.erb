@@ -1,0 +1,15 @@
+<% case @link.type %>
+  <% when 'RegularLink' %>
+    <h1>Detalle link regular</h1>
+  <% when 'TemporalLink' %>
+    <h1>Detalle link temporal</h1>
+  <% when 'PrivateLink' %>
+    <h1>Detalle link privado</h1>
+  <% when 'EphemeralLink' %>
+    <h1>Detalle link efímero</h1>
+  <% end %><p style="color: green"><%= notice %></p>
+<%= render partial: 'links/partials/go_back', locals: { go_back_url: links_path(type: @link.type) } %>
+<%= render partial: 'links/partials/link', locals: { link: @link, is_index_view: false} %>
+
+
+

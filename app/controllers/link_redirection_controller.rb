@@ -24,7 +24,7 @@ class LinkRedirectionController < ApplicationController
     elsif params[:password].present? && link.password == params[:password]
       create_access_and_redirect(link)
     else
-      render 'links/_access_private_form', locals: { link: link }
+      render 'links/partials/_access_private_form', locals: { link: link }
     end
   end
   
@@ -44,7 +44,7 @@ class LinkRedirectionController < ApplicationController
   end
 
   def access_private_form(link)
-    render 'links/_access_private_form', locals: { link: link }
+    render 'links/partials/_access_private_form', locals: { link: link }
   end
 
   def access_ephemeral(link)

@@ -4,10 +4,7 @@ Rails.application.routes.draw do
 
   # rutas para administración de los links
   resources :link_accesses
-  resources :ephemeral_links
-  resources :private_links
-  resources :temporal_links
-  resources :regular_links
+  resources :links
 
   get "up" => "rails/health#show", as: :rails_health_check
 
@@ -18,7 +15,7 @@ Rails.application.routes.draw do
   }
   
   # ruta de acceso a los links
-  get '/l/:slug', to: 'link_redirection#access'
+  get '/l/:slug', to: 'link_redirection#access', as: :public_link
 
   # ruta para el formulario de pw de un link privado
   post '/l/:slug/access_private', to: 'link_redirection#access_private', as: :access_private

@@ -13,33 +13,33 @@
 </div>
 <div class="page-title">Enlaces mas visitados</div>
   <div class="link-group">
-  <h2 class="title"><%= link_to 'Regulares', (@regular_links || []).to_a.count > 0 ? regular_links_path : "#" %></h2>
+  <h2 class="title"><%= link_to 'Regulares', (@regular_links || []).to_a.count > 0 ? links_path(type: RegularLink) : "#" %></h2>
     <div class="link-buttons">
-    <button><%= link_to 'Nuevo', new_regular_link_path(new_go_back: root_path) %></button>
+    <button><%= link_to 'Nuevo', new_link_path(new_go_back: root_path, type: 'RegularLink') %></button>
     </div>
     <%= render_links(@regular_links) %>
   </div>
 
   <div class="link-group">
-  <h2 class="title"><%= link_to 'Temporales', (@temporal_links || []).to_a.count > 0 ? temporal_links_path : "#" %></h2>
+  <h2 class="title"><%= link_to 'Temporales', (@temporal_links || []).to_a.count > 0 ? links_path(type: TemporalLink) : "#" %></h2>
     <div class="link-buttons">
-    <button><%= link_to 'Nuevo', new_temporal_link_path(new_go_back: root_path) %></button>
+    <button><%= link_to 'Nuevo', new_link_path(new_go_back: root_path, type: 'TemporalLink') %></button>
     </div>
     <%= render_links(@temporal_links) %>
   </div>
 
   <div class="link-group">
-    <h2 class="title"><%= link_to 'Privados', (@private_links || []).to_a.count > 0 ? private_links_path : "#" %></h2>
+    <h2 class="title"><%= link_to 'Privados', (@private_links || []).to_a.count > 0 ? links_path(type: PrivateLink) : "#" %></h2>
     <div class="link-buttons">
-      <button><%= link_to 'Nuevo', new_private_link_path(new_go_back: root_path) %></button>
+      <button><%= link_to 'Nuevo', new_link_path(new_go_back: root_path, type: 'PrivateLink') %></button>
     </div>
     <%= render_links(@private_links) %>
   </div>
 
   <div class="link-group">
-  <h2 class="title"><%= link_to 'Efímeros', (@ephemeral_links || []).to_a.count > 0 ? ephemeral_links_path : "#" %></h2>
+  <h2 class="title"><%= link_to 'Efímeros', (@ephemeral_links || []).to_a.count > 0 ? links_path(type: EphemeralLink) : "#" %></h2>
     <div class="link-buttons">
-    <button><%= link_to 'Nuevo', new_ephemeral_link_path(new_go_back: root_path) %></button>
+    <button><%= link_to 'Nuevo', new_link_path(new_go_back: root_path, type: 'EphemeralLink') %></button>
     </div>
     <%= render_links(@ephemeral_links) %>
   </div>
