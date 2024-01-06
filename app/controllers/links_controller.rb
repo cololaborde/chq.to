@@ -22,7 +22,6 @@ class LinksController < ApplicationController
 
   def create
     @link = current_user.links.build(link_params.merge(type: params[:type].constantize))
-    puts @link.inspect
     if @link.save
       redirect_to link_path(@link), notice: "#{@link.type.humanize} link was successfully created."
     else
