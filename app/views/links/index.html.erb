@@ -1,6 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Links</h1>
+<% case @type %>
+  <% when 'RegularLink' %>
+    <h1>Links Regulares</h1>
+  <% when 'TemporalLink' %>
+    <h1>Links Temporales</h1>
+  <% when 'PrivateLink' %>
+    <h1>Links Privados</h1>
+  <% when 'EphemeralLink' %>
+    <h1>Links Efímeros</h1>
+<% end %>
+
 <%= render partial: 'links/partials/go_back', locals: { go_back_url: root_path } %>
 <div id="links">
 <% @links.each do |link| %>
